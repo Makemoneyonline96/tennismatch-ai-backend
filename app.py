@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # CORS erlaubt Zugriff von der Chrome-Erweiterung
 
 @app.route("/analyze")
 def analyze():
@@ -14,7 +16,7 @@ def analyze():
         )
     else:
         prediction = "Matchdaten nicht verfügbar"
-        analysis = "Bitte gib ein bekanntes Match ein."
+        analysis = "Bitte gib ein bekanntes Match ein, z. B. 'Bautista vs Zandschulp'."
 
     return jsonify({
         "prediction": prediction,
